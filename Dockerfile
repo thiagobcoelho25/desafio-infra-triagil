@@ -4,7 +4,7 @@ LABEL maintainer="Thiago Ribeiro <thiagobcoelho25@gmail.com>"
 
 WORKDIR /app
 
-COPY . .
+COPY src .
 
 RUN mvn package
 
