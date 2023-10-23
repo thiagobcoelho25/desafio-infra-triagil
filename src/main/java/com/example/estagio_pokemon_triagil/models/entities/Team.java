@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,7 +20,7 @@ public class Team {
     @JoinTable(name = "pokemons_team",
             joinColumns = { @JoinColumn(name = "team_id_fk") },
             inverseJoinColumns = { @JoinColumn(name = "pokemon_id_fk") })
-    private Set<Pokemon> pokemons = new HashSet<>();
+    private Set<Pokemon> pokemons;
 
     public Team(String owner, Set<Pokemon> pokemons) {
         this.owner = owner;

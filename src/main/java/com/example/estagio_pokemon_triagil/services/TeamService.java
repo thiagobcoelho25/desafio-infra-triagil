@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -40,6 +41,12 @@ public class TeamService {
     public Integer saveTeam(InputTeamDTO inputTeamDTO) {
         Team team = new Team();
         team.setOwner(inputTeamDTO.getOwner());
+
+        Set<String> valores_unicos = new HashSet<>(inputTeamDTO.getTeam().stream().map(String::strip).toList());
+
+        if(valores_unicos.size() != inputTeamDTO.getTeam().size()){
+            throw new BusinessRuleException("A Lista De Pokemons Não Pode Conter +1 Mesmo Pokemon");
+        }
 
         List<Pokemon> pokemons_from_db = pokemonRepository.findPokemonsByNameIn(inputTeamDTO.getTeam());
 

@@ -3,6 +3,6 @@ version: '3'
 services:
   estagio-pokemon-triagil-api:
     build:
-      context: src  # O diretório onde está o Dockerfile
+      context: .
     ports:
-      - "8080:8080"  # Mapeamento da porta do contêiner
+      - "8080:8080"
